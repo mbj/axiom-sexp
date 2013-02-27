@@ -5,8 +5,9 @@ module Veritas
     # Generator for s-expressions
     module Generator
       # Incomplete sexp formatter operation table
-      REGISTRY = IceNine.deep_freeze( 
+      REGISTRY = {
         Relation::Base                            => [ :base                                       ],
+        Relation::Materialized                    => [ :materialized                               ],
         Relation::Operation::Order                => [ :binary,    :order, :operand, :directions   ],
         Relation::Header                          => [ :collect                                    ],
         Relation::Operation::Order::DirectionSet  => [ :collect                                    ],
@@ -55,7 +56,7 @@ module Veritas
         Function::Proposition::Contradiction      => [ :static,    :false                          ],
         Attribute::String                         => [ :attribute                                  ],
         Attribute::Integer                        => [ :attribute                                  ]
-      )
+      }
 
       # Transform veritas relation into s-expression
       #
@@ -69,6 +70,20 @@ module Veritas
         name, *options = REGISTRY.fetch(relation.class) { return relation }
         send(name, relation, *options)
       end
+
+      # Helper method for materialized s-expressions
+      #
+      # @param [Veritas::Relation::Materialized] relation
+      # @param [Symbol] tag
+      #
+      # @return [Array]
+      #
+      # @api private
+      #
+      def self.materialized(materialized)
+        [ :materialized, visit(materialized.header), materialized.to_a.map(&:to_ary) ]
+      end
+      private_class_method :materialized
 
       # Helper method for static s-expressions
       #
