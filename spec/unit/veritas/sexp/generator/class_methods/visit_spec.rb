@@ -74,7 +74,7 @@ describe Veritas::Sexp::Generator, '.visit' do
     expect_sexp do
       [ :restrict,
         [ :base, 'name', [ [ :foo, Veritas::Attribute::Integer ] ] ],
-        [ :eql, [ :attr, :foo ] , 'bar' ]
+        [ :eq, [ :attr, :foo ] , 'bar' ]
       ]
     end
   end
