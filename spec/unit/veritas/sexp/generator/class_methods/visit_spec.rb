@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Veritas::Sexp, '.visit' do
+describe Veritas::Sexp::Generator, '.visit' do
   let(:object) { described_class }
 
   subject { object.visit(relation) }
