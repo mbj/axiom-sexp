@@ -30,6 +30,8 @@ module Veritas
         Function::Numeric::Subtraction           => [ :binary,    :sub                            ],
         Function::Numeric::UnaryMinus            => [ :unary,     :unary_minus                    ],
         Function::Numeric::UnaryPlus             => [ :unary,     :unary_plus                     ],
+        Function::Proposition::Tautology         => [ :static,    :true                           ],
+        Function::Proposition::Contradiction     => [ :static,    :false                          ],
         Attribute::String                        => [ :attribute                                  ],
         Attribute::Integer                       => [ :attribute                                  ]
       )
@@ -46,6 +48,20 @@ module Veritas
         name, *options = REGISTRY.fetch(relation.class) { return relation }
         send(name, relation, *options)
       end
+
+      # Helper method for static s-expressions
+      #
+      # @param [Veritas::Relation] relation
+      # @param [Symbol] tag
+      #
+      # @return [Array]
+      #
+      # @api private
+      #
+      def self.static(relation, tag)
+        tag
+      end
+      private_class_method :static
 
       # Helper for binary s-expressions
       #
