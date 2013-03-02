@@ -1,6 +1,7 @@
 ---
 UnusedParameters:
-  exclude: []
+  exclude: 
+  - Veritas::Sexp::Generator#self.static
 UncommunicativeParameterName:
   accept: []
   exclude: []
@@ -25,8 +26,8 @@ UncommunicativeMethodName:
 LongParameterList:
   max_params: 2
   exclude: 
-  - Veritas::Sexp#self.binary # 4 params
-  - Veritas::Sexp#self.unary  # 4 params
+  - Veritas::Sexp::Generator#self.binary # 4 params
+  - Veritas::Sexp::Generator#self.unary  # 4 params
   enabled: true
   overrides: {}
 FeatureEnvy:
