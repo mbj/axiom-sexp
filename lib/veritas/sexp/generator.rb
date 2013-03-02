@@ -81,20 +81,33 @@ module Veritas
       # @api private
       #
       def self.materialized(materialized)
-        [ :materialized, visit(materialized.header), materialized.to_a.map(&:to_ary) ]
+        [ :materialized, visit(materialized.header), tuples(materialized) ]
       end
       private_class_method :materialized
 
+      # Helper method for tuple s-expressions
+      #
+      # @param [Relation] relation
+      #
+      # @return [Array]
+      #
+      # @api private
+      #
+      def self.tuples(relation)
+        relation.to_a.map(&:to_ary)
+      end
+      private_class_method :tuples
+
       # Helper method for static s-expressions
       #
-      # @param [Veritas::Relation] relation
+      # @param [Veritas::Relation] _relation
       # @param [Symbol] tag
       #
       # @return [Array]
       #
       # @api private
       #
-      def self.static(relation, tag)
+      def self.static(_relation, tag)
         tag
       end
       private_class_method :static
