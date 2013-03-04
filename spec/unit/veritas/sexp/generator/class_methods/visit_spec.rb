@@ -19,6 +19,14 @@ describe Veritas::Sexp::Generator, '.visit' do
     end
   end
 
+  context 'with materialized relation' do
+    let(:relation) { Veritas::Relation.new(header, [ [ 1 ] ] ) }
+
+    expect_sexp do
+      [ :materialized, [ [ :foo, Veritas::Attribute::Integer ] ], [ [ 1 ] ] ]
+    end
+  end
+
   context 'with base relation' do
     let(:relation) { base_relation }
 

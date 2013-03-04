@@ -81,7 +81,7 @@ module Veritas
       # @api private
       #
       def self.materialized(materialized)
-        [ :materialized, visit(materialized.header), tuples(materialized) ]
+        [ :materialized, base_header(materialized.header), tuples(materialized) ]
       end
       private_class_method :materialized
 
