@@ -94,7 +94,7 @@ module Veritas
       # @api private
       #
       def self.tuples(relation)
-        relation.to_a.map(&:to_ary)
+        relation.map(&:to_ary)
       end
       private_class_method :tuples
 

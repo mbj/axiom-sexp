@@ -20,7 +20,6 @@ describe Veritas::Sexp::Generator, '.visit' do
   end
 
   context 'with proposition' do
-
     context 'tautology' do
       let(:relation) { Veritas::Function::Proposition::Tautology.new }
 
@@ -36,7 +35,6 @@ describe Veritas::Sexp::Generator, '.visit' do
         [ :false ]
       end
     end
-
   end
 
   context 'with materialized relation' do
