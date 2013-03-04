@@ -108,7 +108,7 @@ module Veritas
       # @api private
       #
       def self.static(_relation, tag)
-        tag
+        [ tag ]
       end
       private_class_method :static
 

@@ -19,6 +19,26 @@ describe Veritas::Sexp::Generator, '.visit' do
     end
   end
 
+  context 'with proposition' do
+
+    context 'tautology' do
+      let(:relation) { Veritas::Function::Proposition::Tautology.new }
+
+      expect_sexp do
+        [ :true ]
+      end
+    end
+
+    context 'contradiction' do
+      let(:relation) { Veritas::Function::Proposition::Contradiction.new }
+
+      expect_sexp do
+        [ :false ]
+      end
+    end
+
+  end
+
   context 'with materialized relation' do
     let(:relation) { Veritas::Relation.new(header, [ [ 1 ] ] ) }
 
