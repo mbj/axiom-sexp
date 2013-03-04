@@ -138,7 +138,7 @@ module Veritas
       #
       # @api private
       #
-      def self.unary(relation, tag, operand = :operand)
+      def self.unary(relation, tag, operand)
         [ tag, visit(relation.public_send(operand)) ]
       end
       private_class_method :unary
