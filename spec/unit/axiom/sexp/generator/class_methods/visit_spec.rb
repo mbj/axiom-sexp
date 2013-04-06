@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe Veritas::Sexp::Generator, '.visit' do
+describe Axiom::Sexp::Generator, '.visit' do
   let(:object) { described_class }
 
   subject { object.visit(relation) }
 
-  let(:header)        { Veritas::Relation::Header.coerce([[:foo, Integer]]) }
-  let(:base_relation) { Veritas::Relation::Base.new(:name, header)          }
+  let(:header)        { Axiom::Relation::Header.coerce([[:foo, Integer]]) }
+  let(:base_relation) { Axiom::Relation::Base.new(:name, header)          }
 
   let(:sorted_base_relation) { base_relation.sort_by { |r| [r.foo.asc] } }
 
-  let(:other_header)        { Veritas::Relation::Header.coerce([[:bar, Integer]]) }
-  let(:other_base_relation) { Veritas::Relation::Base.new(:other, other_header)   }
+  let(:other_header)        { Axiom::Relation::Header.coerce([[:bar, Integer]]) }
+  let(:other_base_relation) { Axiom::Relation::Base.new(:other, other_header)   }
 
   def self.expect_sexp
     it 'should return correct sexp' do
@@ -21,7 +21,7 @@ describe Veritas::Sexp::Generator, '.visit' do
 
   context 'with proposition' do
     context 'tautology' do
-      let(:relation) { Veritas::Function::Proposition::Tautology.new }
+      let(:relation) { Axiom::Function::Proposition::Tautology.new }
 
       expect_sexp do
         [ :true ]
@@ -29,7 +29,7 @@ describe Veritas::Sexp::Generator, '.visit' do
     end
 
     context 'contradiction' do
-      let(:relation) { Veritas::Function::Proposition::Contradiction.new }
+      let(:relation) { Axiom::Function::Proposition::Contradiction.new }
 
       expect_sexp do
         [ :false ]
@@ -38,10 +38,10 @@ describe Veritas::Sexp::Generator, '.visit' do
   end
 
   context 'with materialized relation' do
-    let(:relation) { Veritas::Relation.new(header, [ [ 1 ] ] ) }
+    let(:relation) { Axiom::Relation.new(header, [ [ 1 ] ] ) }
 
     expect_sexp do
-      [ :materialized, [ [ :foo, Veritas::Attribute::Integer ] ], [ [ 1 ] ] ]
+      [ :materialized, [ [ :foo, Axiom::Attribute::Integer ] ], [ [ 1 ] ] ]
     end
   end
 
@@ -49,7 +49,7 @@ describe Veritas::Sexp::Generator, '.visit' do
     let(:relation) { base_relation }
 
     expect_sexp do
-      [ :base, 'name', [ [ :foo, Veritas::Attribute::Integer ] ] ]
+      [ :base, 'name', [ [ :foo, Axiom::Attribute::Integer ] ] ]
     end
   end
 
@@ -58,7 +58,7 @@ describe Veritas::Sexp::Generator, '.visit' do
 
     expect_sexp do
       [ :order,
-        [ :base, 'name', [ [ :foo, Veritas::Attribute::Integer ] ] ],
+        [ :base, 'name', [ [ :foo, Axiom::Attribute::Integer ] ] ],
         [[ :asc, [ :attr, :foo ] ]]
       ]
     end
@@ -71,7 +71,7 @@ describe Veritas::Sexp::Generator, '.visit' do
       [
         :offset,
         [ :order,
-          [ :base, 'name', [ [ :foo, Veritas::Attribute::Integer ] ] ],
+          [ :base, 'name', [ [ :foo, Axiom::Attribute::Integer ] ] ],
           [[ :asc, [ :attr, :foo ] ]]
         ],
         2
@@ -86,7 +86,7 @@ describe Veritas::Sexp::Generator, '.visit' do
       [
         :limit,
         [ :order,
-          [ :base, 'name', [ [ :foo, Veritas::Attribute::Integer ] ] ],
+          [ :base, 'name', [ [ :foo, Axiom::Attribute::Integer ] ] ],
           [[ :asc, [ :attr, :foo ] ]]
         ],
         2
@@ -99,7 +99,7 @@ describe Veritas::Sexp::Generator, '.visit' do
 
     expect_sexp do
       [ :restrict,
-        [ :base, 'name', [ [ :foo, Veritas::Attribute::Integer ] ] ],
+        [ :base, 'name', [ [ :foo, Axiom::Attribute::Integer ] ] ],
         [ :eq, [ :attr, :foo ] , 'bar' ]
       ]
     end
@@ -110,8 +110,8 @@ describe Veritas::Sexp::Generator, '.visit' do
 
     expect_sexp do
       [ :product,
-        [ :base, 'name',  [ [ :foo, Veritas::Attribute::Integer ] ] ],
-        [ :base, 'other', [ [ :bar, Veritas::Attribute::Integer ] ] ]
+        [ :base, 'name',  [ [ :foo, Axiom::Attribute::Integer ] ] ],
+        [ :base, 'other', [ [ :bar, Axiom::Attribute::Integer ] ] ]
       ]
     end
   end
@@ -121,8 +121,8 @@ describe Veritas::Sexp::Generator, '.visit' do
 
     expect_sexp do
       [ :join,
-        [ :base, 'name', [ [ :foo, Veritas::Attribute::Integer ] ] ],
-        [ :base, 'name', [ [ :foo, Veritas::Attribute::Integer ] ] ]
+        [ :base, 'name', [ [ :foo, Axiom::Attribute::Integer ] ] ],
+        [ :base, 'name', [ [ :foo, Axiom::Attribute::Integer ] ] ]
       ]
     end
   end
@@ -132,7 +132,7 @@ describe Veritas::Sexp::Generator, '.visit' do
 
     expect_sexp do
       [ :project,
-        [ :base, 'name', [ [ :foo, Veritas::Attribute::Integer ] ] ],
+        [ :base, 'name', [ [ :foo, Axiom::Attribute::Integer ] ] ],
         [ [ :attr, :foo ] ]
       ]
     end
@@ -144,7 +144,7 @@ describe Veritas::Sexp::Generator, '.visit' do
 
       expect_sexp do
         [ :extend,
-          [ :base, 'name', [ [ :foo, Veritas::Attribute::Integer ] ] ],
+          [ :base, 'name', [ [ :foo, Axiom::Attribute::Integer ] ] ],
           [
             [ :bar, [ :attr, :foo ] ]
           ]
@@ -158,7 +158,7 @@ describe Veritas::Sexp::Generator, '.visit' do
 
       expect_sexp do
         [ :extend,
-          [ :base, 'name', [ [ :foo, Veritas::Attribute::Integer ] ] ],
+          [ :base, 'name', [ [ :foo, Axiom::Attribute::Integer ] ] ],
           [
             [ :bar, [ :mul, [ :attr, :foo ], 2 ] ]
           ]
