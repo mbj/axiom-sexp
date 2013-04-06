@@ -1,18 +1,18 @@
-veritas-sexp
+axiom-sexp
 ============
 
-[![Build Status](https://secure.travis-ci.org/mbj/veritas-sexp.png?branch=master)](http://travis-ci.org/mbj/veritas-sexp)
-[![Dependency Status](https://gemnasium.com/mbj/veritas-sexp.png)](https://gemnasium.com/mbj/veritas-sexp)
-[![Code Climate](https://codeclimate.com/github/mbj/veritas-sexp.png)](https://codeclimate.com/github/mbj/veritas-sexp)
+[![Build Status](https://secure.travis-ci.org/mbj/axiom-sexp.png?branch=master)](http://travis-ci.org/mbj/axiom-sexp)
+[![Dependency Status](https://gemnasium.com/mbj/axiom-sexp.png)](https://gemnasium.com/mbj/axiom-sexp)
+[![Code Climate](https://codeclimate.com/github/mbj/axiom-sexp.png)](https://codeclimate.com/github/mbj/axiom-sexp)
 
-A simple generator/parser from/to [veritas](https://github.com/dkubb/veritas)/s-expressions.
+A simple generator/parser from/to [axiom](https://github.com/dkubb/axiom)/s-expressions.
 
 Usage
 -----
 
 ```
-require 'veritas'
-require 'veritas-sexp'
+require 'axiom'
+require 'axiom-sexp'
 
 relation = Veritas::Relation::Base.new(:name, Veritas::Relation::Header.coerce([[:id, Integer], [:foo, String]])
 
@@ -24,7 +24,7 @@ Installation
 
 There is currently no gem release. Use git source in your Gemfile:
 
-```gem 'veritas-sexp', :git => 'https://github.com/mbj/veritas-sexp'```
+```gem 'axiom-sexp', :git => 'https://github.com/mbj/axiom-sexp'```
 
 Credits
 -------
