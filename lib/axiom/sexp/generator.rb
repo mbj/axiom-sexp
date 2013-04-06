@@ -1,6 +1,4 @@
-require 'veritas'
-
-module Veritas
+module Axiom
   module Sexp
     # Generator for s-expressions
     module Generator
@@ -60,7 +58,7 @@ module Veritas
 
       # Transform veritas relation into s-expression
       #
-      # @param [Veritas::Relation] relation
+      # @param [Axiom::Relation] relation
       #
       # @return [Array] 
       #
@@ -73,7 +71,7 @@ module Veritas
 
       # Helper method for materialized s-expressions
       #
-      # @param [Veritas::Relation::Materialized] relation
+      # @param [Axiom::Relation::Materialized] relation
       # @param [Symbol] tag
       #
       # @return [Array]
@@ -100,7 +98,7 @@ module Veritas
 
       # Helper method for static s-expressions
       #
-      # @param [Veritas::Relation] _relation
+      # @param [Axiom::Relation] _relation
       # @param [Symbol] tag
       #
       # @return [Array]
@@ -114,7 +112,7 @@ module Veritas
 
       # Helper for binary s-expressions
       #
-      # @param [Veritas::Relation] relation
+      # @param [Axiom::Relation] relation
       # @param [Symbol] tag
       # @param [Symbol] left
       # @param [Symbol] right
@@ -130,7 +128,7 @@ module Veritas
 
       # Helper for unary s-expressions
       #
-      # @param [Veritas::Relation] relation
+      # @param [Axiom::Relation] relation
       # @param [Symbol] tag
       # @param [Symbol] operand
       #
@@ -145,7 +143,7 @@ module Veritas
 
       # Helper for enumerable s-expressions
       #
-      # @param [Enumerable<Veritas::Relation>] input
+      # @param [Enumerable<Axiom::Relation>] input
       #
       # @return [Array] 
       #
@@ -158,9 +156,9 @@ module Veritas
       end
       private_class_method :collect
       
-      # Helper for Veritas::Algebra::Extend s-expressions
+      # Helper for Axiom::Algebra::Extend s-expressions
       #
-      # @param [Veritas::Algebra::Extend] relation
+      # @param [Axiom::Algebra::Extend] relation
       #
       # @return [Array] 
       #
@@ -171,7 +169,7 @@ module Veritas
       end
       private_class_method :extend
       
-      # Helper for Veritas::Algebra::Extend s-expressions
+      # Helper for Axiom::Algebra::Extend s-expressions
       #
       # @param [Hash] hash
       #
@@ -186,9 +184,9 @@ module Veritas
       end
       private_class_method :extensions
       
-      # Helper for Veritas::Relation::base s-expressions
+      # Helper for Axiom::Relation::base s-expressions
       #
-      # @param [Veritas::Relation::Base] relation
+      # @param [Axiom::Relation::Base] relation
       #
       # @return [Array] 
       #
@@ -199,9 +197,9 @@ module Veritas
       end
       private_class_method :base
 
-      # Helper for Veritas::Relation::base s-expressions
+      # Helper for Axiom::Relation::base s-expressions
       #
-      # @param [Veritas::Relation::Header] header
+      # @param [Axiom::Relation::Header] header
       #
       # @return [Array] 
       #
@@ -214,9 +212,9 @@ module Veritas
       end
       private_class_method :base_header
 
-      # Helper for Veritas::Relation::base s-expressions
+      # Helper for Axiom::Relation::base s-expressions
       #
-      # @param [Veritas::Attribute] attribute
+      # @param [Axiom::Attribute] attribute
       #
       # @return [Array] 
       #
@@ -228,9 +226,9 @@ module Veritas
       private_class_method :base_attribute
 
 
-      # Helper for Veritas::Attribute s-expressions
+      # Helper for Axiom::Attribute s-expressions
       #
-      # @param [Veritas::Attribute] attribute
+      # @param [Axiom::Attribute] attribute
       #
       # @return [Array] 
       #
