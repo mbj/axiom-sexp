@@ -1,7 +1,7 @@
 ---
 UnusedParameters:
   exclude: 
-  - Veritas::Sexp::Generator#self.static
+  - Axiom::Sexp::Generator#self.static
 UncommunicativeParameterName:
   accept: []
   exclude: []
@@ -10,11 +10,14 @@ UncommunicativeParameterName:
   - !ruby/regexp /^.$/
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
-LargeClass:
-  max_methods: 10
+TooManyInstanceVariables:
   exclude: []
   enabled: true
   max_instance_variables: 2
+TooManyMethods:
+  exclude: []
+  enabled: true
+  max_methods: 10
 UncommunicativeMethodName:
   accept: []
   exclude: []
@@ -26,8 +29,8 @@ UncommunicativeMethodName:
 LongParameterList:
   max_params: 2
   exclude: 
-  - Veritas::Sexp::Generator#self.binary # 4 params
-  - Veritas::Sexp::Generator#self.unary  # 4 params
+  - Axiom::Sexp::Generator#self.binary # 4 params
+  - Axiom::Sexp::Generator#self.unary  # 4 params
   enabled: true
   overrides: {}
 FeatureEnvy:
@@ -54,11 +57,11 @@ NestedIterators:
   exclude: []
   enabled: true
   max_allowed_nesting: 1
-LongMethod:
+TooManyStatements:
   max_statements: 5
   exclude: []
   enabled: true
-Duplication:
+DuplicateMethodCall:
   allow_calls: []
   exclude: []
   enabled: true
@@ -78,7 +81,7 @@ UncommunicativeVariableName:
   - !ruby/regexp /^.$/
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
-SimulatedPolymorphism:
+RepeatedConditional:
   exclude: []
   enabled: true
   max_ifs: 1
@@ -87,7 +90,7 @@ DataClump:
   enabled: true
   max_copies: 1
   min_clump_size: 3
-ControlCouple:
+ControlParameter:
   exclude: []
   enabled: true
 LongYieldList:
